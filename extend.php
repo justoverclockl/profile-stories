@@ -17,6 +17,7 @@ use Flarum\User\User;
 use Justoverclock\ProfileStories\Controller\CreateStoryController;
 use Justoverclock\ProfileStories\Controller\GetStories;
 use Justoverclock\ProfileStories\Controller\GlobalStories;
+use Justoverclock\ProfileStories\Controller\UpdateStoryController;
 use Justoverclock\ProfileStories\Event\StoryCreated;
 use Justoverclock\ProfileStories\Listener\SendNotificationOnNewStory;
 use Justoverclock\ProfileStories\Model\Story;
@@ -46,6 +47,7 @@ return [
     (new Extend\Routes('api'))
         ->get('/stories', 'stories.list', GetStories::class)
         ->get('/global-stories', 'globalstories.index', GlobalStories::class)
+        ->patch('/stories/{id}', 'stories.update', UpdateStoryController::class)
         ->post('/create-story', 'create.story', CreateStoryController::class),
 
     (new Extend\ApiSerializer(UserSerializer::class))

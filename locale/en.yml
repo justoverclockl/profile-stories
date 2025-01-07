@@ -13,7 +13,7 @@ justoverclock-profile-stories:
     createStory: Create story
     stories: Stories
     storyTitle: Story title (short)...
-    storyImage: Story image URL (preferred size 600x600)
+    storyImage: Story image URL (preferred size 500x300)
     storyIcon: fas fa-user
     storyCta: Button text
     storyContentText: Text or HTML for the complete story
