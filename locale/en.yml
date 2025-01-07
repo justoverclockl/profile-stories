@@ -5,6 +5,7 @@ justoverclock-profile-stories:
       viewStory: View global stories
 
   forum:
+    globalStoriesEmpty: There are no stories yet.
     globalStoriesDescription: This section contains all the stories earned by our users!
     heroTitle: "'s Stories"
     StoryModalTitle: "'s Story"

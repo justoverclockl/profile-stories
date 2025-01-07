@@ -42,52 +42,60 @@ export default class GlobalStories extends Component {
               <ul>{listItems(IndexPage.prototype.sidebarItems().toArray())}</ul>
             </nav>
             <div className="IndexPage-results sideNavOffset">
-              <h1 style={{margin: 0}} className="glostitle">
+              <h1 style={{ margin: 0 }} className="glostitle">
                 {app.translator.trans('justoverclock-profile-stories.forum.globalStoriesTitle')}
               </h1>
-              <p
-                className='global-stories-description'>{app.translator.trans('justoverclock-profile-stories.forum.globalStoriesDescription')}</p>
-              <div className="stories-all">
-                {this.globalStories &&
-                  this.globalStories.data.map((story) => (
-                    <a href={`${app.forum.attribute('baseUrl')}/u/${story.attributes.username}/stories`}>
-                      <div
-                        className="story-item"
-                        style={{
-                          backgroundImage: `url(${story.attributes.imgUrl})`,
-                          backgroundSize: 'cover',
-                        }}
-                      >
-                        <div className="story-text-wrapper-global">
-                          <h3>
-                            <i style={{marginRight: '5px'}} class={`fa-solid ${story.attributes.contentIcon}`}></i>
-                            {story.attributes.title}
-                          </h3>
-                          <p>
-                            <i style={{marginRight: '5px'}} class={`fas fa-user`}></i>
-                            {story.attributes.username}
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  ))}
-              </div>
-              <div className='user-story-pagination'>
-                <button
-                  disabled={this.globalStories && this.globalStories?.data.length <= 19}
-                  class="Button"
-                  onclick={() => this.getStories(this.globalStories?.links.prev)}
-                >
-                  {app.translator.trans('justoverclock-profile-stories.forum.prevPage')}
-                </button>
-                <button
-                  disabled={this.globalStories && this.globalStories?.data.length <= 19}
-                  class="Button"
-                  onclick={() => this.getStories(this.globalStories?.links.next)}
-                >
-                  {app.translator.trans('justoverclock-profile-stories.forum.nextPage')}
-                </button>
-              </div>
+              {this.globalStories && this.globalStories.data.length <= 0 && (
+                <p className="global-stories-description">{app.translator.trans('justoverclock-profile-stories.forum.globalStoriesEmpty')}</p>
+              )}
+              {this.globalStories && this.globalStories.data.length > 0 && (
+                <div>
+                  <p className="global-stories-description">{app.translator.trans('justoverclock-profile-stories.forum.globalStoriesDescription')}</p>
+                  <div className="stories-all">
+                    {this.globalStories &&
+                      this.globalStories.data.map((story) => (
+                        <a href={`${app.forum.attribute('baseUrl')}/u/${story.attributes.username}/stories`}>
+                          <div
+                            className="story-item"
+                            style={{
+                              backgroundImage: `url(${story.attributes.imgUrl})`,
+                              backgroundSize: 'cover',
+                            }}
+                          >
+                            <div className="story-text-wrapper-global">
+                              <h3>
+                                <i style={{ marginRight: '5px' }} class={`fa-solid ${story.attributes.contentIcon}`}></i>
+                                {story.attributes.title}
+                              </h3>
+                              <p>
+                                <i style={{ marginRight: '5px' }} class={`fas fa-user`}></i>
+                                {story.attributes.username}
+                              </p>
+                            </div>
+                          </div>
+                        </a>
+                      ))}
+                  </div>
+                </div>
+              )}
+              {this.globalStories && this.globalStories.data.length > 15 && (
+                <div className="user-story-pagination">
+                  <button
+                    disabled={this.globalStories && this.globalStories?.data.length <= 19}
+                    class="Button"
+                    onclick={() => this.getStories(this.globalStories?.links.prev)}
+                  >
+                    {app.translator.trans('justoverclock-profile-stories.forum.prevPage')}
+                  </button>
+                  <button
+                    disabled={this.globalStories && this.globalStories?.data.length <= 19}
+                    class="Button"
+                    onclick={() => this.getStories(this.globalStories?.links.next)}
+                  >
+                    {app.translator.trans('justoverclock-profile-stories.forum.nextPage')}
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -674,7 +674,9 @@ var GlobalStories = /*#__PURE__*/function (_Component) {
         margin: 0
       },
       className: "glostitle"
-    }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_4___default().translator.trans('justoverclock-profile-stories.forum.globalStoriesTitle')), m("p", {
+    }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_4___default().translator.trans('justoverclock-profile-stories.forum.globalStoriesTitle')), this.globalStories && this.globalStories.data.length <= 0 && m("p", {
+      className: "global-stories-description"
+    }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_4___default().translator.trans('justoverclock-profile-stories.forum.globalStoriesEmpty')), this.globalStories && this.globalStories.data.length > 0 && m("div", null, m("p", {
       className: "global-stories-description"
     }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_4___default().translator.trans('justoverclock-profile-stories.forum.globalStoriesDescription')), m("div", {
       className: "stories-all"
@@ -700,7 +702,7 @@ var GlobalStories = /*#__PURE__*/function (_Component) {
         },
         "class": "fas fa-user"
       }), story.attributes.username))));
-    })), m("div", {
+    }))), this.globalStories && this.globalStories.data.length > 15 && m("div", {
       className: "user-story-pagination"
     }, m("button", {
       disabled: this.globalStories && ((_this$globalStories = this.globalStories) == null ? void 0 : _this$globalStories.data.length) <= 19,
