@@ -90,25 +90,27 @@ export default class ListUserStories extends Component<CreateStoryAttrs> {
             </div>
           </div>
         )}
-        <div className='user-story-pagination'>
-          <button
-            disabled={this.userStories && this.userStories.data.length <= 8}
-            class="Button"
-            onclick={() => {
-              const link = this.userStories?.links.prev ?? this.userStories?.links.first
-              this.getAllUserStory(link)
-            }}
-          >
-            {app.translator.trans('justoverclock-profile-stories.forum.prevPage')}
-          </button>
-          <button
-            disabled={this.userStories && this.userStories?.data.length <= 8}
-            class="Button"
-            onclick={() => this.getAllUserStory(this.userStories?.links.next)}
-          >
-            {app.translator.trans('justoverclock-profile-stories.forum.nextPage')}
-          </button>
-        </div>
+        {this.userStories && this.userStories?.data.length > 7 && (
+          <div className='user-story-pagination'>
+            <button
+              disabled={this.userStories && this.userStories.data.length <= 8}
+              class="Button"
+              onclick={() => {
+                const link = this.userStories?.links.prev ?? this.userStories?.links.first
+                this.getAllUserStory(link)
+              }}
+            >
+              {app.translator.trans('justoverclock-profile-stories.forum.prevPage')}
+            </button>
+            <button
+              disabled={this.userStories && this.userStories?.data.length <= 8}
+              class="Button"
+              onclick={() => this.getAllUserStory(this.userStories?.links.next)}
+            >
+              {app.translator.trans('justoverclock-profile-stories.forum.nextPage')}
+            </button>
+          </div>
+        )}
       </div>
     );
   }
