@@ -1,26 +1,26 @@
-import Modal, {IInternalModalAttrs} from "flarum/common/components/Modal";
-import Mithril from "mithril";
-import app from 'flarum/forum/app'
+import Modal, { IInternalModalAttrs } from 'flarum/common/components/Modal';
+import Mithril from 'mithril';
+import app from 'flarum/forum/app';
 import Stream from 'flarum/common/utils/Stream';
 
 export interface CreateStoryModalAttrs extends IInternalModalAttrs {
-  refreshStories: () => void
-  username: string
-  userId: string | number
+  refreshStories: () => void;
+  username: string;
+  userId: string | number;
 }
 
 export default class CreateStoryModal extends Modal<CreateStoryModalAttrs> {
   public step: number = 0;
-  story_title = Stream('')
-  story_imgUrl = Stream('')
-  story_cta = Stream('')
-  story_icon = Stream('')
-  story_text = Stream('')
-  story_content_cta = Stream('')
-  story_content_link = Stream('')
+  story_title = Stream('');
+  story_imgUrl = Stream('');
+  story_cta = Stream('');
+  story_icon = Stream('');
+  story_text = Stream('');
+  story_content_cta = Stream('');
+  story_content_link = Stream('');
 
   className(): string {
-    return "create-story-modal";
+    return 'create-story-modal';
   }
 
   title(): Mithril.Children {
@@ -28,7 +28,7 @@ export default class CreateStoryModal extends Modal<CreateStoryModalAttrs> {
   }
 
   content(): Mithril.Children {
-    console.log('aaaaaaa',this.attrs.username)
+    console.log('aaaaaaa', this.attrs.username);
     return (
       <div className="new-story-container">
         <div className="new-story-content">
@@ -99,13 +99,11 @@ export default class CreateStoryModal extends Modal<CreateStoryModalAttrs> {
               {app.translator.trans('justoverclock-profile-stories.forum.nextStepBtn')}
             </button>
           )}
-          {this.step === 1 && <button
-            onclick={this.complete.bind(this)}
-            className="Button"
-            type='submit'
-          >
-            {app.translator.trans('justoverclock-profile-stories.forum.saveBtn')}
-          </button>}
+          {this.step === 1 && (
+            <button onclick={this.complete.bind(this)} className="Button" type="submit">
+              {app.translator.trans('justoverclock-profile-stories.forum.saveBtn')}
+            </button>
+          )}
         </form>
       </div>
     );
@@ -128,27 +126,29 @@ export default class CreateStoryModal extends Modal<CreateStoryModalAttrs> {
   }
 
   complete() {
-    app.request({
-      method: 'POST',
-      url: `${app.forum.attribute('apiUrl')}/create-story`,
-      body: {
-        data: {
-          attributes: {
-            user_id: this.attrs.userId,
-            title: this.story_title(),
-            img_url: this.story_imgUrl(),
-            cta: this.story_cta(),
-            content_icon: this.story_icon(),
-            content_text: this.story_text(),
-            content_cta: this.story_content_cta(),
-            content_link: this.story_content_link(),
-            username: this.attrs.username
-          }
-        }
-      }
-    }).then(() => {
-      this.hide()
-      this.attrs.refreshStories();
-    })
+    app
+      .request({
+        method: 'POST',
+        url: `${app.forum.attribute('apiUrl')}/create-story`,
+        body: {
+          data: {
+            attributes: {
+              user_id: this.attrs.userId,
+              title: this.story_title(),
+              img_url: this.story_imgUrl(),
+              cta: this.story_cta(),
+              content_icon: this.story_icon(),
+              content_text: this.story_text(),
+              content_cta: this.story_content_cta(),
+              content_link: this.story_content_link(),
+              username: this.attrs.username,
+            },
+          },
+        },
+      })
+      .then(() => {
+        this.hide();
+        this.attrs.refreshStories();
+      });
   }
 }

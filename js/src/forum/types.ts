@@ -14,7 +14,7 @@ export interface StoryAttributes {
 }
 
 export interface Story {
-  type: "stories";
+  type: 'stories';
   id: string;
   attributes: StoryAttributes;
 }
@@ -22,7 +22,7 @@ export interface Story {
 export interface Links {
   first: string;
   next: string;
-  prev?: string
+  prev?: string;
 }
 
 export interface Meta {
@@ -34,12 +34,12 @@ export interface ApiStoryResponse {
   links: {
     first: string;
     next?: string;
-    prev?: string
+    prev?: string;
   };
   data: {
     type: string;
     id: string;
-    attributes: StoryAttributes
+    attributes: StoryAttributes;
   }[];
   meta: {
     total: number;

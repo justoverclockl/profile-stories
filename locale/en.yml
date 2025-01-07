@@ -3,6 +3,7 @@ justoverclock-profile-stories:
     permission:
       createStory: Create new story
       viewStory: View global stories
+      editStory: Edit stories
 
   forum:
     globalStoriesEmpty: There are no stories yet.

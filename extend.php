@@ -49,17 +49,7 @@ return [
         ->post('/create-story', 'create.story', CreateStoryController::class),
 
     (new Extend\ApiSerializer(UserSerializer::class))
-        ->attribute('storyCount', function (UserSerializer $serializer, $user, $attributes) {
-            return $user->stories()->count();
-        })
-        ->attributes(function (UserSerializer $serializer, User $user, array $attributes) {
-            $attributes['canCreateStory'] = $serializer->getActor()->can('createStory', $user);
-            return $attributes;
-        })
-        ->attributes(function (UserSerializer $serializer, User $user, array $attributes) {
-            $attributes['canViewGlobalStories'] = $serializer->getActor()->can('viewStory', $user);
-            return $attributes;
-        }),
+        ->attributes(AddStoryAttributes::class),
 
     (new Extend\Event())
         ->listen(StoryCreated::class, SendNotificationOnNewStory::class, 'handle'),

@@ -1,7 +1,7 @@
 // @ts-nocheck
-import Notification from "flarum/forum/components/Notification";
-import Mithril from "mithril";
-import app from 'flarum/forum/app'
+import Notification from 'flarum/forum/components/Notification';
+import Mithril from 'mithril';
+import app from 'flarum/forum/app';
 
 export default class NewStoryNotification extends Notification {
   content(): Mithril.Children {
@@ -14,12 +14,11 @@ export default class NewStoryNotification extends Notification {
 
   href(): string {
     const username = this.attrs.notification?.data?.attributes?.content?.user?.username;
-    console.log(this.attrs.notification?.data?.attributes?.content?.user)
+    console.log(this.attrs.notification?.data?.attributes?.content?.user);
     return `${app.forum.attribute('baseUrl')}/u/${username}/stories`;
   }
 
   icon(): string {
-    return "fas fa-book-open";
+    return 'fas fa-book-open';
   }
-
 }
