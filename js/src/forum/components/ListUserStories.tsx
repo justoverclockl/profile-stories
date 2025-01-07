@@ -13,7 +13,7 @@ export type CreateStoryAttrs = {
   userId: number | string
 }
 
-export default class CreateStory extends Component<CreateStoryAttrs> {
+export default class ListUserStories extends Component<CreateStoryAttrs> {
   public userStories: ApiStoryResponse | null = null;
   public currentPage: number = 1;
   public totalPages: number = 1;
@@ -28,7 +28,7 @@ export default class CreateStory extends Component<CreateStoryAttrs> {
   }
 
   showCreateStoryModal() {
-    app.modal.show(CreateStoryModal, { refreshStories: this.getAllUserStory.bind(this), username: this.attrs.user.data?.attributes?.username });
+    app.modal.show(CreateStoryModal, { refreshStories: this.getAllUserStory.bind(this), username: this.attrs.user.data?.attributes?.username, userId: this.attrs.user.id() });
   }
 
   getAllUserStory(url = `${app.forum.attribute('apiUrl')}/stories?userId=${this.attrs.userId}`) {
@@ -78,10 +78,9 @@ export default class CreateStory extends Component<CreateStoryAttrs> {
                   >
                     <div className="story-text-wrapper">
                       <h3>
-                        <i style={{marginRight: '5px'}} class={`fa-solid ${story.attributes.contentIcon}`}></i>
-                        Title
+                        <i style={{marginRight: '5px'}} class={`${story.attributes.contentIcon}`}></i>
                       </h3>
-                      <p>Lorem ipsum dolor sit.</p>
+                      <p>{story.attributes.title}</p>
                     </div>
                     <button onclick={() => app.modal.show(CompleteStoryModal, {story})} className="Button">
                       {story.attributes.cta}

@@ -15,12 +15,12 @@ __webpack_require__.r(__webpack_exports__);
 
 flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().initializers.add('justoverclock/profile-stories', function () {
   flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().extensionData["for"]('justoverclock-profile-stories').registerPermission({
-    icon: 'fas fa-book',
+    icon: 'fas fa-book-open',
     label: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().translator.trans('justoverclock-profile-stories.admin.permission.createStory'),
     permission: 'createStory',
     allowGuest: false
   }, 'start').registerPermission({
-    icon: 'fas fa-book',
+    icon: 'fas fa-book-open',
     label: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default().translator.trans('justoverclock-profile-stories.admin.permission.viewStory'),
     permission: 'viewStory',
     allowGuest: true

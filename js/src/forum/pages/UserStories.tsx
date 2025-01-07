@@ -4,7 +4,7 @@ import app from 'flarum/forum/app';
 import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
 import listItems from 'flarum/common/helpers/listItems';
 import {extend} from "flarum/common/extend";
-import CreateStory from "../components/CreateStory";
+import ListUserStories from "../components/ListUserStories";
 
 export interface StoriesPageAttrs extends IUserPageAttrs {
   username: string
@@ -35,7 +35,7 @@ export default class UserStories extends UserPage<StoriesPageAttrs> {
                 <ul>{listItems(this.sidebarItems().toArray())}</ul>
               </nav>
               <div className="sideNavOffset UserPage-content">
-                <CreateStory userId={this.user.id()} user={this.user} />
+                <ListUserStories userId={this.user.id()} user={this.user} />
               </div>
             </div>
           </div>

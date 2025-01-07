@@ -3,6 +3,7 @@
 namespace Justoverclock\ProfileStories\Notification;
 
 use Flarum\Notification\Blueprint\BlueprintInterface;
+use Flarum\User\User;
 use Justoverclock\ProfileStories\Model\Story;
 
 class NewStoryNotificationBlueprint implements BlueprintInterface
@@ -21,13 +22,15 @@ class NewStoryNotificationBlueprint implements BlueprintInterface
 
     public function getFromUser()
     {
-        return $this->story->user;
+        return User::query()->where('username', $this->story->username)->first();
     }
 
     public function getData(): array
     {
+        $user = User::query()->where('username', $this->story->username)->first();
         return [
             'message' => 'You have a new story!',
+            'user' => $user
         ];
     }
 
@@ -38,6 +41,6 @@ class NewStoryNotificationBlueprint implements BlueprintInterface
 
     public static function getSubjectModel()
     {
-        return Story::class;
+        return User::class;
     }
 }

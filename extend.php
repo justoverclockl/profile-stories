@@ -17,6 +17,8 @@ use Flarum\User\User;
 use Justoverclock\ProfileStories\Controller\CreateStoryController;
 use Justoverclock\ProfileStories\Controller\GetStories;
 use Justoverclock\ProfileStories\Controller\GlobalStories;
+use Justoverclock\ProfileStories\Event\StoryCreated;
+use Justoverclock\ProfileStories\Listener\SendNotificationOnNewStory;
 use Justoverclock\ProfileStories\Model\Story;
 use Justoverclock\ProfileStories\Notification\NewStoryNotificationBlueprint;
 
@@ -58,4 +60,7 @@ return [
             $attributes['canViewGlobalStories'] = $serializer->getActor()->can('viewStory', $user);
             return $attributes;
         }),
+
+    (new Extend\Event())
+        ->listen(StoryCreated::class, SendNotificationOnNewStory::class, 'handle'),
 ];

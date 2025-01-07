@@ -5,7 +5,7 @@ app.initializers.add('justoverclock/profile-stories', () => {
     .for('justoverclock-profile-stories')
     .registerPermission(
       {
-        icon: 'fas fa-book',
+        icon: 'fas fa-book-open',
         label: app.translator.trans('justoverclock-profile-stories.admin.permission.createStory'),
         permission: 'createStory',
         allowGuest: false,
@@ -14,7 +14,7 @@ app.initializers.add('justoverclock/profile-stories', () => {
     )
     .registerPermission(
       {
-        icon: 'fas fa-book',
+        icon: 'fas fa-book-open',
         label: app.translator.trans('justoverclock-profile-stories.admin.permission.viewStory'),
         permission: 'viewStory',
         allowGuest: true

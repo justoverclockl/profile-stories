@@ -5,7 +5,9 @@ namespace Justoverclock\ProfileStories\Controller;
 use Flarum\Api\Controller\AbstractCreateController;
 use Flarum\Http\RequestUtil;
 use Flarum\User\Exception\PermissionDeniedException;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\Arr;
+use Justoverclock\ProfileStories\Event\StoryCreated;
 use Justoverclock\ProfileStories\Model\Story;
 use Justoverclock\ProfileStories\Serializer\StorySerializer;
 use Psr\Http\Message\ServerRequestInterface;
@@ -14,6 +16,12 @@ use Tobscure\JsonApi\Document;
 class CreateStoryController extends AbstractCreateController
 {
     public $serializer = StorySerializer::class;
+    protected $events;
+
+    public function __construct(Dispatcher $events)
+    {
+        $this->events = $events;
+    }
 
     protected function data(ServerRequestInterface $request, Document $document)
     {
@@ -26,7 +34,7 @@ class CreateStoryController extends AbstractCreateController
         }
 
         $story = new Story();
-        $story->user_id = $actor->id;
+        $story->user_id = Arr::get($data, 'data.attributes.user_id');
         $story->title = Arr::get($data, 'data.attributes.title');
         $story->img_url = Arr::get($data, 'data.attributes.img_url');
         $story->cta = Arr::get($data, 'data.attributes.cta');
@@ -37,6 +45,7 @@ class CreateStoryController extends AbstractCreateController
         $story->username = Arr::get($data, 'data.attributes.username');
 
         $story->save();
+        $this->events->dispatch(new StoryCreated($story));
 
         return $story;
     }

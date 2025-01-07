@@ -4,6 +4,7 @@ export interface StoryAttributes {
   title: string;
   imgUrl: string;
   cta: string;
+  username: string;
   contentIcon: string;
   contentText: string;
   contentCta: string;

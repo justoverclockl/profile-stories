@@ -5,6 +5,7 @@ justoverclock-profile-stories:
       viewStory: View global stories
 
   forum:
+    globalStoriesDescription: This section contains all the stories earned by our users!
     heroTitle: "'s Stories"
     StoryModalTitle: "'s Story"
     createStory: Create story
@@ -20,8 +21,10 @@ justoverclock-profile-stories:
     nextStepBtn: next step
     saveBtn: Save
     nextPage: next
-    prevPage: prev
+    prevPage: previous
     youDontHavePermission: You don't have permissions to create a new story!
     stories-count: " {count, plural, one { {count} story} other {{count} stories}}"
     globalStories: Users stories
     globalStoriesTitle: Users stories
+    notifications:
+      newStory: You have a new profile story!

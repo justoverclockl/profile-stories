@@ -95,6 +95,8 @@
   border-radius: 8px;
   padding: .5rem;
   color: white;
+  display: flex;
+  gap: 8px;
 
   & i {
     margin-right: 18px;
@@ -147,4 +149,31 @@ body when (@config-dark-mode = false) {
   display: flex;
   justify-content: space-between;
   padding-top: 3rem;
+}
+
+.story-text-wrapper-global {
+  background-color: rgba(0,0,0,0.5);
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  padding: .5rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  a {
+    text-decoration: none;
+  }
+
+  i {
+    font-size: 15px;
+  }
+
+  h3 {
+    margin: 0
+  }
+}
+
+.global-stories-description {
+  margin-top: 1rem;
 }

@@ -6,6 +6,7 @@ import Stream from 'flarum/common/utils/Stream';
 export interface CreateStoryModalAttrs extends IInternalModalAttrs {
   refreshStories: () => void
   username: string
+  userId: string | number
 }
 
 export default class CreateStoryModal extends Modal<CreateStoryModalAttrs> {
@@ -133,7 +134,7 @@ export default class CreateStoryModal extends Modal<CreateStoryModalAttrs> {
       body: {
         data: {
           attributes: {
-            user_id: app.session?.user?.id(),
+            user_id: this.attrs.userId,
             title: this.story_title(),
             img_url: this.story_imgUrl(),
             cta: this.story_cta(),
