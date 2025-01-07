@@ -17,8 +17,17 @@ app.initializers.add('justoverclock/profile-stories', () => {
         icon: 'fas fa-book-open',
         label: app.translator.trans('justoverclock-profile-stories.admin.permission.viewStory'),
         permission: 'viewStory',
-        allowGuest: true
+        allowGuest: true,
       },
       'view'
     )
+    .registerPermission(
+      {
+        icon: 'fas fa-book-open',
+        label: app.translator.trans('justoverclock-profile-stories.admin.permission.editStory'),
+        permission: 'editStory',
+        allowGuest: false,
+      },
+      'view'
+    );
 });

@@ -1,20 +1,20 @@
 import app from 'flarum/forum/app';
-import { extend } from 'flarum/common/extend'
-import UserStories from "./pages/UserStories";
+import { extend } from 'flarum/common/extend';
+import UserStories from './pages/UserStories';
 import UserPage from 'flarum/forum/components/UserPage';
-import Mithril from "mithril";
-import ItemList from "flarum/common/utils/ItemList";
+import Mithril from 'mithril';
+import ItemList from 'flarum/common/utils/ItemList';
 import UserCard from 'flarum/forum/components/UserCard';
 // @ts-ignore
 import LinkButton from 'flarum/components/LinkButton';
 import icon from 'flarum/common/helpers/icon';
 import type User from 'flarum/common/models/User';
-import GlobalStories from "./pages/GlobalStories";
-import IndexPage from 'flarum/forum/components/IndexPage'
-import NewStoryNotification from "./components/notifications/NewStoryNotification";
+import GlobalStories from './pages/GlobalStories';
+import IndexPage from 'flarum/forum/components/IndexPage';
+import NewStoryNotification from './components/notifications/NewStoryNotification';
 import NotificationGrid from 'flarum/forum/components/NotificationGrid';
-import Notification from "flarum/forum/components/Notification";
-import {REP_NOTIFICATIONS} from "./notifications";
+import Notification from 'flarum/forum/components/Notification';
+import { REP_NOTIFICATIONS } from './notifications';
 
 app.initializers.add('justoverclock/profile-stories', () => {
   app.notificationComponents.newStory = NewStoryNotification;
@@ -26,10 +26,10 @@ app.initializers.add('justoverclock/profile-stories', () => {
 
   app.routes.globalStories = {
     path: '/all-users-stories',
-    component: GlobalStories
-  }
+    component: GlobalStories,
+  };
 
-  extend(NotificationGrid.prototype, 'notificationTypes', function(items) {
+  extend(NotificationGrid.prototype, 'notificationTypes', function (items) {
     REP_NOTIFICATIONS.forEach((notification) => {
       items.add(notification.name, {
         name: notification.name,
@@ -37,21 +37,21 @@ app.initializers.add('justoverclock/profile-stories', () => {
         label: notification.label,
       });
     });
-  })
+  });
 
   extend(IndexPage.prototype, 'navItems', function (items) {
     items.add(
       'globalStories',
-      <LinkButton href={app.route('globalStories')} icon='fas fa-book-open'>
+      <LinkButton href={app.route('globalStories')} icon="fas fa-book-open">
         {app.translator.trans('justoverclock-profile-stories.forum.globalStories')}
       </LinkButton>
-    )
-  })
+    );
+  });
 
   extend(UserCard.prototype, 'infoItems', function (items) {
     // @ts-expect-error
     const user = this.attrs.user as User;
-    const storyCount = user.data?.attributes?.storyCount
+    const storyCount = user.data?.attributes?.storyCount;
     items.add(
       'storiesCount',
       <span className="UserCard-storiesCount">

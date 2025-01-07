@@ -4,7 +4,7 @@ import IndexPage from 'flarum/forum/components/IndexPage';
 import listItems from 'flarum/common/helpers/listItems';
 import app from 'flarum/forum/app';
 import { ApiStoryResponse } from '../types';
-import LoadingIndicator from "flarum/common/components/LoadingIndicator";
+import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
 
 export default class GlobalStories extends Component {
   public loading: boolean = false;
@@ -46,9 +46,7 @@ export default class GlobalStories extends Component {
               <h1 style={{ margin: 0 }} className="glostitle">
                 {app.translator.trans('justoverclock-profile-stories.forum.globalStoriesTitle')}
               </h1>
-              {this.loading && (
-                <LoadingIndicator />
-              )}
+              {this.loading && <LoadingIndicator />}
               {!this.loading && this.globalStories && this.globalStories.data.length <= 0 && (
                 <p className="global-stories-description">{app.translator.trans('justoverclock-profile-stories.forum.globalStoriesEmpty')}</p>
               )}
@@ -56,7 +54,8 @@ export default class GlobalStories extends Component {
                 <div>
                   <p className="global-stories-description">{app.translator.trans('justoverclock-profile-stories.forum.globalStoriesDescription')}</p>
                   <div className="stories-all">
-                    {!this.loading && this.globalStories &&
+                    {!this.loading &&
+                      this.globalStories &&
                       this.globalStories.data.map((story) => (
                         <a href={`${app.forum.attribute('baseUrl')}/u/${story.attributes.username}/stories`}>
                           <div

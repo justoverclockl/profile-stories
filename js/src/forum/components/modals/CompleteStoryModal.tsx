@@ -1,8 +1,8 @@
 import Modal, { IInternalModalAttrs } from 'flarum/common/components/Modal';
 import Mithril from 'mithril';
 import { Story } from '../../types';
-import Link from 'flarum/common/components/Link'
-import app from 'flarum/forum/app'
+import Link from 'flarum/common/components/Link';
+import app from 'flarum/forum/app';
 
 interface CompleteStoryModalAttrs extends IInternalModalAttrs {
   story: Story;
@@ -23,7 +23,7 @@ export default class CompleteStoryModal extends Modal<CompleteStoryModalAttrs> {
     return (
       <div className="complete-story-container">
         <div className="complete-story-content">
-          <div className='complete-story-title'>
+          <div className="complete-story-title">
             <i class={`story-icon fa-solid ${story.attributes.contentIcon}`}></i>
             <h3>{story.attributes.title}</h3>
           </div>
