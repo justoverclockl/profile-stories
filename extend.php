@@ -14,6 +14,7 @@ namespace Justoverclock\ProfileStories;
 use Flarum\Api\Serializer\UserSerializer;
 use Flarum\Extend;
 use Flarum\User\User;
+use Justoverclock\ProfileStories\Controller\BannerUploadController;
 use Justoverclock\ProfileStories\Controller\CreateStoryController;
 use Justoverclock\ProfileStories\Controller\DeleteStoryController;
 use Justoverclock\ProfileStories\Controller\GetStories;
@@ -48,7 +49,8 @@ return [
         ->get('/global-stories', 'globalstories.index', GlobalStories::class)
         ->patch('/stories/{id}', 'stories.update', UpdateStoryController::class)
         ->post('/create-story', 'create.story', CreateStoryController::class)
-        ->delete('/delete-story/{id}', 'delete.story', DeleteStoryController::class),
+        ->delete('/delete-story/{id}', 'delete.story', DeleteStoryController::class)
+        ->post('/banner/upload', 'banner.upload', BannerUploadController::class),
 
     (new Extend\ApiSerializer(UserSerializer::class))
         ->attributes(AddStoryAttributes::class),

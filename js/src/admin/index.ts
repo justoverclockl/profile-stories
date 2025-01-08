@@ -1,8 +1,10 @@
 import app from 'flarum/admin/app';
+import StoriesSettingsPage from "./components/StoriesSettingsPage";
 
 app.initializers.add('justoverclock/profile-stories', () => {
   app.extensionData
     .for('justoverclock-profile-stories')
+    .registerPage(StoriesSettingsPage)
     .registerPermission(
       {
         icon: 'fas fa-book-open',
