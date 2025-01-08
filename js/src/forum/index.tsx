@@ -70,7 +70,7 @@ app.initializers.add('justoverclock/profile-stories', () => {
     if (user) {
       items.add(
         'profilestories',
-        <LinkButton href={app.route('user.stories', { username: user?.slug() })} name="stories" icon="fas fa-users">
+        <LinkButton href={app.route('user.stories', { username: user?.slug() })} name="stories" icon="fas fa-book-open">
           {app.translator.trans('justoverclock-profile-stories.forum.stories')}
         </LinkButton>
       );
