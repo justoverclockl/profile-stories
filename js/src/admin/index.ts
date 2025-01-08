@@ -28,6 +28,15 @@ app.initializers.add('justoverclock/profile-stories', () => {
         permission: 'editStory',
         allowGuest: false,
       },
-      'view'
+      'moderate'
+    )
+    .registerPermission(
+      {
+        icon: 'fas fa-book-open',
+        label: app.translator.trans('justoverclock-profile-stories.admin.permission.deleteStory'),
+        permission: 'deleteStory',
+        allowGuest: false,
+      },
+      'moderate'
     );
 });

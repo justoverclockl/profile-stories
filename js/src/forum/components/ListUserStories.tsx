@@ -53,9 +53,22 @@ export default class ListUserStories extends Component<CreateStoryAttrs> {
       });
   }
 
+  deleteStory(storyId: string) {
+    app
+      .request({
+        method: 'DELETE',
+        url: `${app.forum.attribute('apiUrl')}/delete-story/${storyId}`,
+      })
+      .then(() => {
+        this.getAllUserStory();
+        app.alerts.show({ type: 'success' }, app.translator.trans('justoverclock-profile-stories.forum.successDelete'));
+      });
+  }
+
   view(vnode: Mithril.Vnode<ComponentAttrs, this>): Mithril.Children {
     const user = this.attrs.user;
     const canCreateStory = user?.data.attributes?.canCreateStory || false;
+    const canDeleteStory = user?.data.attributes?.canDeleteStory || false;
 
     return (
       <div className="PostsUserPage">
@@ -84,9 +97,19 @@ export default class ListUserStories extends Component<CreateStoryAttrs> {
                       </h3>
                       <p>{story.attributes.title}</p>
                     </div>
-                    <button onclick={() => app.modal.show(CompleteStoryModal, { story })} className="Button">
-                      {story.attributes.cta}
-                    </button>
+                    <div className="story-actions-btn">
+                      <button onclick={() => app.modal.show(CompleteStoryModal, { story })} className="Button">
+                        {story.attributes.cta}
+                      </button>
+                      {canDeleteStory && (
+                        <button
+                          onclick={() => this.deleteStory(story.id)}
+                          className="Button Button--danger"
+                        >
+                          <i class="fas fa-trash-alt"></i>
+                        </button>
+                      )}
+                    </div>
                   </div>
                 ))}
             </div>

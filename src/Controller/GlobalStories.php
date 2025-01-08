@@ -44,17 +44,14 @@ class GlobalStories extends AbstractListController
         $sort = $this->extractSort($request);
         $sortIsDefault = $this->sortIsDefault($request);
 
-        /*if (! $actor->can('viewStory')) {
-            throw new PermissionDeniedException();
-        }*/
-
         $limit = $this->extractLimit($request);
         $offset = $this->extractOffset($request);
         $include = $this->extractInclude($request);
 
         $totalStories = Story::all()->count();
 
-        $query = Story::with($include)
+        $query = Story::query()
+            ->with($include)
             ->skip($offset)
             ->take($limit)
             ->get();

@@ -15,6 +15,7 @@ use Flarum\Api\Serializer\UserSerializer;
 use Flarum\Extend;
 use Flarum\User\User;
 use Justoverclock\ProfileStories\Controller\CreateStoryController;
+use Justoverclock\ProfileStories\Controller\DeleteStoryController;
 use Justoverclock\ProfileStories\Controller\GetStories;
 use Justoverclock\ProfileStories\Controller\GlobalStories;
 use Justoverclock\ProfileStories\Controller\UpdateStoryController;
@@ -34,9 +35,7 @@ return [
     new Extend\Locales(__DIR__.'/locale'),
 
     (new Extend\Model(User::class))
-        ->relationship('stories', function (User $user) {
-            return $user->hasMany(Story::class);
-        }),
+        ->hasMany('stories',Story::class),
 
     (new Extend\Model(Story::class))
         ->belongsTo('user', User::class, 'user_id'),
@@ -48,7 +47,8 @@ return [
         ->get('/stories', 'stories.list', GetStories::class)
         ->get('/global-stories', 'globalstories.index', GlobalStories::class)
         ->patch('/stories/{id}', 'stories.update', UpdateStoryController::class)
-        ->post('/create-story', 'create.story', CreateStoryController::class),
+        ->post('/create-story', 'create.story', CreateStoryController::class)
+        ->delete('/delete-story/{id}', 'delete.story', DeleteStoryController::class),
 
     (new Extend\ApiSerializer(UserSerializer::class))
         ->attributes(AddStoryAttributes::class),

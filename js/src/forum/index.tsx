@@ -52,13 +52,15 @@ app.initializers.add('justoverclock/profile-stories', () => {
     // @ts-expect-error
     const user = this.attrs.user as User;
     const storyCount = user.data?.attributes?.storyCount;
-    items.add(
-      'storiesCount',
-      <span className="UserCard-storiesCount">
+    if (user) {
+      items.add(
+        'storiesCount',
+        <span className="UserCard-storiesCount">
         {icon('fas fa-book-open')}
-        {app.translator.trans('justoverclock-profile-stories.forum.stories-count', { count: storyCount })}
+          {app.translator.trans('justoverclock-profile-stories.forum.stories-count', { count: storyCount })}
       </span>
-    );
+      );
+    }
   });
 
   extend(UserPage.prototype, 'navItems', function (items: ItemList<Mithril.Children>) {

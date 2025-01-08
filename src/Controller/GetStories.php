@@ -54,7 +54,8 @@ class GetStories extends AbstractListController
 
         $totalStories = Story::all()->count();
 
-        $query = Story::with('user')
+        $query = Story::query()
+            ->with('user')
             ->where('user_id', $userId)
             ->skip($offset)
             ->take($limit)

@@ -6,6 +6,7 @@ namespace Justoverclock\ProfileStories\Serializer;
 use Carbon\Carbon;
 use Flarum\Api\Serializer\AbstractSerializer;
 use Flarum\Api\Serializer\UserSerializer;
+use Justoverclock\ProfileStories\Model\Story;
 
 class StorySerializer extends AbstractSerializer
 {
@@ -31,6 +32,6 @@ class StorySerializer extends AbstractSerializer
 
     protected function user($model)
     {
-        return $this->hasOne($model, UserSerializer::class, 'user_id');
+        return $this->hasOne($model, Story::class, 'user_id');
     }
 }
