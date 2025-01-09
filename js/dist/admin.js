@@ -16,28 +16,96 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
 /* harmony import */ var flarum_admin_components_ExtensionPage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/admin/components/ExtensionPage */ "flarum/admin/components/ExtensionPage");
 /* harmony import */ var flarum_admin_components_ExtensionPage__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_admin_components_ExtensionPage__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_admin_app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/admin/app */ "flarum/admin/app");
+/* harmony import */ var flarum_admin_app__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_admin_app__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 var StoriesSettingsPage = /*#__PURE__*/function (_ExtensionPage) {
   function StoriesSettingsPage() {
-    return _ExtensionPage.apply(this, arguments) || this;
+    var _this;
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+    _this = _ExtensionPage.call.apply(_ExtensionPage, [this].concat(args)) || this;
+    _this.fileInput = null;
+    _this.filepath = null;
+    return _this;
   }
   (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(StoriesSettingsPage, _ExtensionPage);
   var _proto = StoriesSettingsPage.prototype;
   _proto.oninit = function oninit(vnode) {
     _ExtensionPage.prototype.oninit.call(this, vnode);
+    this.fileInput = null;
+    this.filepath = '';
   };
   _proto.oncreate = function oncreate(vnode) {
     _ExtensionPage.prototype.oncreate.call(this, vnode);
   };
+  _proto.uploadStoryBanner = function uploadStoryBanner(url) {
+    var _this$fileInput$files,
+      _this2 = this;
+    if (url === void 0) {
+      url = flarum_admin_app__WEBPACK_IMPORTED_MODULE_2___default().forum.attribute('apiUrl') + "/banner/upload";
+    }
+    if (!this.fileInput || !((_this$fileInput$files = this.fileInput.files) != null && _this$fileInput$files.length)) {
+      flarum_admin_app__WEBPACK_IMPORTED_MODULE_2___default().alerts.show({
+        type: 'error'
+      }, 'Please select a file to upload.');
+      return;
+    }
+    var file = this.fileInput.files[0];
+    var formData = new FormData();
+    formData.append('storyBanner', file);
+    flarum_admin_app__WEBPACK_IMPORTED_MODULE_2___default().request({
+      method: 'POST',
+      url: url,
+      body: formData
+    }).then(function (response) {
+      // @ts-ignore
+      _this2.filepath = response.data.attributes.path;
+      m.redraw();
+      flarum_admin_app__WEBPACK_IMPORTED_MODULE_2___default().alerts.show({
+        type: 'success'
+      }, 'Banner uploaded successfully!');
+    })["catch"](function (error) {
+      console.error('Upload failed:', error);
+      flarum_admin_app__WEBPACK_IMPORTED_MODULE_2___default().alerts.show({
+        type: 'error'
+      }, 'Failed to upload the banner. Please try again.');
+    });
+  };
   _proto.content = function content(vnode) {
+    var _this3 = this;
+    var path = flarum_admin_app__WEBPACK_IMPORTED_MODULE_2___default().forum.attribute('baseUrl');
+    var image = flarum_admin_app__WEBPACK_IMPORTED_MODULE_2___default().forum.attribute('justoverclock-profile-stories.imagePreview') || 'https://placehold.co/1920x400';
+    var imagePreview = image ? path + "/assets/" + image : '';
     return m("div", {
-      className: "container profileStoryContainer"
-    }, m("input", {
+      className: "profileStoryContainer"
+    }, m("div", {
+      className: "preview-storybanner"
+    }, m("img", {
+      src: imagePreview,
+      alt: "Preview"
+    })), m("label", {
+      "for": "storyBanner"
+    }, flarum_admin_app__WEBPACK_IMPORTED_MODULE_2___default().translator.trans('justoverclock-profile-stories.admin.uploadLabel')), m("p", {
+      className: "helpText"
+    }, flarum_admin_app__WEBPACK_IMPORTED_MODULE_2___default().translator.trans('justoverclock-profile-stories.admin.uploadLabelHelp')), m("input", {
+      id: "storyBanner",
       className: "FormControl",
       type: "file",
-      name: "storyBanner"
-    }));
+      name: "storyBanner",
+      onchange: function onchange(event) {
+        _this3.fileInput = event.target;
+      }
+    }), m("button", {
+      onclick: function onclick() {
+        _this3.uploadStoryBanner();
+        window.location.reload();
+      },
+      className: "Button"
+    }, "Save"));
   };
   return StoriesSettingsPage;
 }((flarum_admin_components_ExtensionPage__WEBPACK_IMPORTED_MODULE_1___default()));

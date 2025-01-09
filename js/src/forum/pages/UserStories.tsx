@@ -11,7 +11,10 @@ export interface StoriesPageAttrs extends IUserPageAttrs {
 }
 
 export default class UserStories extends UserPage<StoriesPageAttrs> {
-  public heroBg = app.forum.attribute('baseUrl') + '/assets/extensions/justoverclock-profile-stories/stories-header.png';
+  public assetPath = `${app.forum.attribute('baseUrl')}/assets/`
+  public fullPath = `${app.forum.attribute('baseUrl')}/assets/${app.forum.attribute('justoverclock-profile-stories.imagePreview')}`
+  public fallback = 'https://placehold.co/1920x400'
+  public heroBg = app.forum.attribute('justoverclock-profile-stories.imagePreview') ? this.fullPath : this.fallback
 
   oninit(vnode: Mithril.Vnode<IUserPageAttrs, this>) {
     super.oninit(vnode);

@@ -48,6 +48,8 @@ class BannerUploadController extends AbstractCreateController
         $stream = $uploadedFile->getStream()->getContents();
         $this->uploadDir->write($filePath, $stream);
 
+        $this->settings->set('justoverclock-profile-stories.imagePreview', $filePath);
+
         return (object)[
             'id' => uniqid(),
             'path' => $filePath,

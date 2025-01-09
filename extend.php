@@ -57,4 +57,7 @@ return [
 
     (new Extend\Event())
         ->listen(StoryCreated::class, SendNotificationOnNewStory::class, 'handle'),
+
+    (new Extend\Settings)
+        ->serializeToForum('justoverclock-profile-stories.imagePreview', 'justoverclock-profile-stories.imagePreview'),
 ];

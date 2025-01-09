@@ -788,7 +788,10 @@ var UserStories = /*#__PURE__*/function (_UserPage) {
       args[_key] = arguments[_key];
     }
     _this = _UserPage.call.apply(_UserPage, [this].concat(args)) || this;
-    _this.heroBg = flarum_forum_app__WEBPACK_IMPORTED_MODULE_2___default().forum.attribute('baseUrl') + '/assets/extensions/justoverclock-profile-stories/stories-header.png';
+    _this.assetPath = flarum_forum_app__WEBPACK_IMPORTED_MODULE_2___default().forum.attribute('baseUrl') + "/assets/";
+    _this.fullPath = flarum_forum_app__WEBPACK_IMPORTED_MODULE_2___default().forum.attribute('baseUrl') + "/assets/" + flarum_forum_app__WEBPACK_IMPORTED_MODULE_2___default().forum.attribute('justoverclock-profile-stories.imagePreview');
+    _this.fallback = 'https://placehold.co/1920x400';
+    _this.heroBg = flarum_forum_app__WEBPACK_IMPORTED_MODULE_2___default().forum.attribute('justoverclock-profile-stories.imagePreview') ? _this.fullPath : _this.fallback;
     return _this;
   }
   (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(UserStories, _UserPage);
