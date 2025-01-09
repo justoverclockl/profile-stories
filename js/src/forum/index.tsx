@@ -56,9 +56,9 @@ app.initializers.add('justoverclock/profile-stories', () => {
       items.add(
         'storiesCount',
         <span className="UserCard-storiesCount">
-        {icon('fas fa-book-open')}
+          {icon('fas fa-book-open')}
           {app.translator.trans('justoverclock-profile-stories.forum.stories-count', { count: storyCount })}
-      </span>
+        </span>
       );
     }
   });

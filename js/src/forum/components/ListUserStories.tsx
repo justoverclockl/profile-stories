@@ -102,10 +102,7 @@ export default class ListUserStories extends Component<CreateStoryAttrs> {
                         {story.attributes.cta}
                       </button>
                       {canDeleteStory && (
-                        <button
-                          onclick={() => this.deleteStory(story.id)}
-                          className="Button Button--danger"
-                        >
+                        <button onclick={() => this.deleteStory(story.id)} className="Button Button--danger">
                           <i class="fas fa-trash-alt"></i>
                         </button>
                       )}

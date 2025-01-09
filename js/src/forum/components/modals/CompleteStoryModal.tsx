@@ -29,7 +29,7 @@ export default class CompleteStoryModal extends Modal<CompleteStoryModalAttrs> {
           </div>
           <img className="complete-story-img" src={story.attributes.imgUrl} alt={story.attributes.title} />
           <p>{m.trust(story.attributes.contentText)}</p>
-          <div className='complete-story-btn'>
+          <div className="complete-story-btn">
             <Link href={story.attributes.contentLink}>
               <button className="Button final-button">{story.attributes.contentCta}</button>
             </Link>
