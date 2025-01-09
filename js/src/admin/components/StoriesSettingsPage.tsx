@@ -1,7 +1,7 @@
-import ExtensionPage, {ExtensionPageAttrs} from "flarum/admin/components/ExtensionPage";
+import ExtensionPage, { ExtensionPageAttrs } from 'flarum/admin/components/ExtensionPage';
 import app from 'flarum/admin/app';
-import Mithril from "mithril";
-import LoadingIndicator from "flarum/common/components/LoadingIndicator";
+import Mithril from 'mithril';
+import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
 
 export default class StoriesSettingsPage extends ExtensionPage {
   fileInput: HTMLInputElement | null = null;
@@ -36,18 +36,21 @@ export default class StoriesSettingsPage extends ExtensionPage {
       .then((response) => {
         // @ts-ignore
         this.filepath = response.data.attributes.path;
-        m.redraw();
         app.alerts.show({ type: 'success' }, 'Banner uploaded successfully!');
       })
       .catch((error) => {
         console.error('Upload failed:', error);
         app.alerts.show({ type: 'error' }, 'Failed to upload the banner. Please try again.');
+      })
+      .finally(() => {
+        m.redraw();
+        window.location.reload();
       });
   }
 
   content(vnode: Mithril.VnodeDOM<ExtensionPageAttrs, this>): JSX.Element {
-    const path = app.forum.attribute('baseUrl')
-    const image = app.forum.attribute('justoverclock-profile-stories.imagePreview') || 'https://placehold.co/1920x400'
+    const path = app.forum.attribute('baseUrl');
+    const image = app.forum.attribute('justoverclock-profile-stories.imagePreview') || 'https://placehold.co/1920x400';
     const imagePreview = image ? `${path}/assets/${image}` : '';
 
     return (
@@ -55,12 +58,8 @@ export default class StoriesSettingsPage extends ExtensionPage {
         <div className="preview-storybanner">
           <img src={imagePreview} alt="Preview" />
         </div>
-        <label for="storyBanner">
-          {app.translator.trans('justoverclock-profile-stories.admin.uploadLabel')}
-        </label>
-        <p className='helpText'>
-          {app.translator.trans('justoverclock-profile-stories.admin.uploadLabelHelp')}
-        </p>
+        <label for="storyBanner">{app.translator.trans('justoverclock-profile-stories.admin.uploadLabel')}</label>
+        <p className="helpText">{app.translator.trans('justoverclock-profile-stories.admin.uploadLabelHelp')}</p>
         <input
           id="storyBanner"
           className="FormControl"
@@ -70,10 +69,12 @@ export default class StoriesSettingsPage extends ExtensionPage {
             this.fileInput = event.target as HTMLInputElement;
           }}
         />
-        <button onclick={() => {
-          this.uploadStoryBanner()
-          window.location.reload()
-        }} className="Button">
+        <button
+          onclick={() => {
+            this.uploadStoryBanner();
+          }}
+          className="Button"
+        >
           Save
         </button>
       </div>

@@ -1,5 +1,5 @@
 import app from 'flarum/admin/app';
-import StoriesSettingsPage from "./components/StoriesSettingsPage";
+import StoriesSettingsPage from './components/StoriesSettingsPage';
 
 app.initializers.add('justoverclock/profile-stories', () => {
   app.extensionData
