@@ -52,7 +52,7 @@ app.initializers.add('justoverclock/profile-stories', () => {
     // @ts-expect-error
     const user = this.attrs.user as User;
     const storyCount = user.data?.attributes?.storyCount;
-    if (user) {
+    if (user && app.session.user) {
       items.add(
         'storiesCount',
         <span className="UserCard-storiesCount">

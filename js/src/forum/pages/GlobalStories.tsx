@@ -5,6 +5,7 @@ import listItems from 'flarum/common/helpers/listItems';
 import app from 'flarum/forum/app';
 import { ApiStoryResponse } from '../types';
 import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
+import CompleteStoryModal from "../components/modals/CompleteStoryModal";
 
 export default class GlobalStories extends Component {
   public loading: boolean = false;
@@ -57,8 +58,8 @@ export default class GlobalStories extends Component {
                     {!this.loading &&
                       this.globalStories &&
                       this.globalStories.data.map((story) => (
-                        <a href={`${app.forum.attribute('baseUrl')}/u/${story.attributes.username}/stories`}>
                           <div
+                            onclick={() => app.modal.show(CompleteStoryModal, { story })}
                             className="story-item"
                             style={{
                               backgroundImage: `url(${story.attributes.imgUrl})`,
@@ -76,7 +77,6 @@ export default class GlobalStories extends Component {
                               </p>
                             </div>
                           </div>
-                        </a>
                       ))}
                   </div>
                 </div>

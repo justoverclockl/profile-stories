@@ -42,7 +42,7 @@ return [
         ->belongsTo('user', User::class, 'user_id'),
 
     (new Extend\Notification())
-        ->type(NewStoryNotificationBlueprint::class, UserSerializer::class, ['newStory']),
+        ->type(NewStoryNotificationBlueprint::class, UserSerializer::class, ['alert']),
 
     (new Extend\Routes('api'))
         ->get('/stories', 'stories.list', GetStories::class)
