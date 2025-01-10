@@ -43,6 +43,7 @@ class BannerUploadController extends AbstractCreateController
 
         $originalName = $uploadedFile->getClientFilename();
         $extension = pathinfo($originalName, PATHINFO_EXTENSION);
+
         $uniqueName = uniqid('storyBanner_') . '.' . $extension;
         $filePath = "extensions/justoverclock-profile-stories/$uniqueName";
         $stream = $uploadedFile->getStream()->getContents();

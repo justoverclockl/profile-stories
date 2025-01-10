@@ -12,7 +12,7 @@ class AddStoryAttributes
         $actor = $serializer->getActor();
 
         if (!$actor->isGuest()) {
-            $attributes['storyCount'] = $actor->stories()->count();
+            $attributes['storyCount'] = $user->stories()->count();
         }
 
         $attributes['canCreateStory'] = $actor->can('createStory', $user);
