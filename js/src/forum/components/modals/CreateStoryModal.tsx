@@ -28,7 +28,6 @@ export default class CreateStoryModal extends Modal<CreateStoryModalAttrs> {
   }
 
   content(): Mithril.Children {
-    console.log('aaaaaaa', this.attrs.username);
     return (
       <div className="new-story-container">
         <div className="new-story-content">

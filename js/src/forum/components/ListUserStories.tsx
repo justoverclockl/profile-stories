@@ -7,6 +7,7 @@ import { ApiStoryResponse, Story } from '../types';
 import CompleteStoryModal from './modals/CompleteStoryModal';
 import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
 import User from 'flarum/common/models/User';
+import EditStoryModal from "./modals/EditStoryModal";
 
 export type CreateStoryAttrs = {
   user: User;
@@ -69,6 +70,7 @@ export default class ListUserStories extends Component<CreateStoryAttrs> {
     const user = this.attrs.user;
     const canCreateStory = user?.data.attributes?.canCreateStory || false;
     const canDeleteStory = user?.data.attributes?.canDeleteStory || false;
+    const canEditStory = user?.data.attributes?.canEditStory || false;
 
     return (
       <div className="PostsUserPage">
@@ -101,6 +103,14 @@ export default class ListUserStories extends Component<CreateStoryAttrs> {
                       <button onclick={() => app.modal.show(CompleteStoryModal, { story })} className="Button">
                         {story.attributes.cta}
                       </button>
+                      {canEditStory && (
+                        <button
+                          onclick={() => app.modal.show(EditStoryModal, { story, user  })}
+                          className="Button"
+                        >
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      )}
                       {canDeleteStory && (
                         <button onclick={() => this.deleteStory(story.id)} className="Button Button--danger">
                           <i class="fas fa-trash-alt"></i>

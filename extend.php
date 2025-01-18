@@ -17,6 +17,7 @@ use Flarum\User\User;
 use Justoverclock\ProfileStories\Controller\BannerUploadController;
 use Justoverclock\ProfileStories\Controller\CreateStoryController;
 use Justoverclock\ProfileStories\Controller\DeleteStoryController;
+use Justoverclock\ProfileStories\Controller\GetSingleStory;
 use Justoverclock\ProfileStories\Controller\GetStories;
 use Justoverclock\ProfileStories\Controller\GlobalStories;
 use Justoverclock\ProfileStories\Controller\UpdateStoryController;
