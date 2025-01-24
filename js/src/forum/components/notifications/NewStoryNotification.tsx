@@ -14,7 +14,6 @@ export default class NewStoryNotification extends Notification {
 
   href(): string {
     const username = this.attrs.notification?.data?.attributes?.content?.user?.username;
-    console.log(this.attrs.notification?.data?.attributes?.content?.user);
     return `${app.forum.attribute('baseUrl')}/u/${username}/stories`;
   }
 

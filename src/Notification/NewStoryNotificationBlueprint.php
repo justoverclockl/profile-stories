@@ -27,10 +27,8 @@ class NewStoryNotificationBlueprint implements BlueprintInterface
 
     public function getData(): array
     {
-        $user = User::query()->where('username', $this->story->username)->first();
         return [
             'message' => 'You have a new story!',
-            'user' => $user
         ];
     }
 
