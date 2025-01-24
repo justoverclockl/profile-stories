@@ -5,7 +5,6 @@ namespace Justoverclock\ProfileStories\Serializer;
 
 use Carbon\Carbon;
 use Flarum\Api\Serializer\AbstractSerializer;
-use Flarum\Api\Serializer\UserSerializer;
 use Justoverclock\ProfileStories\Model\Story;
 
 class StorySerializer extends AbstractSerializer

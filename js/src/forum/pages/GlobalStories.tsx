@@ -67,14 +67,15 @@ export default class GlobalStories extends Component {
                             }}
                           >
                             <div className="story-text-wrapper-global">
+                              <div className='global-stories-details'>
+                                <div className='Avatar gs-avatar'>
+                                  <i class={`fas fa-user`}></i>
+                                </div>
+                                <div>{story.attributes.username}</div>
+                              </div>
                               <h3>
-                                <i style={{ marginRight: '5px' }} class={`fa-solid ${story.attributes.contentIcon}`}></i>
                                 {story.attributes.title}
                               </h3>
-                              <p>
-                                <i style={{ marginRight: '5px' }} class={`fas fa-user`}></i>
-                                {story.attributes.username}
-                              </p>
                             </div>
                           </div>
                       ))}
