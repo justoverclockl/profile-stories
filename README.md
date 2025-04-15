@@ -1,4 +1,4 @@
-# Profile Stories
+# Profile Stories (free)
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/justoverclock/profile-stories.svg)](https://packagist.org/packages/justoverclock/profile-stories) [![Total Downloads](https://img.shields.io/packagist/dt/justoverclock/profile-stories.svg)](https://packagist.org/packages/justoverclock/profile-stories)
 
